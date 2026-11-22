@@ -1,0 +1,12 @@
+filebeat.inputs:
+  - type: filestream
+    id: taskflow-container-json
+    paths:
+      - /var/lib/docker/containers/*/*.log
+    parsers:
+      - container: ~
+    fields:
+      service: taskflow
+    fields_under_root: true
+output.logstash:
+  hosts: ["logstash:5044"]

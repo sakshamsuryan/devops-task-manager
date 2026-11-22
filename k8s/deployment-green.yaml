@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: taskflow-green, namespace: taskflow}
+spec:
+  replicas: 2
+  selector: {matchLabels: {app: taskflow, track: green}}
+  template:
+    metadata: {labels: {app: taskflow, track: green}}
+    spec:
+      containers:
+      - name: web
+        image: taskflow:local
+        imagePullPolicy: IfNotPresent
+        ports: [{containerPort: 5000}]
+        envFrom:
+        - configMapRef: {name: taskflow-config}
+        - secretRef: {name: taskflow-secret}
+        readinessProbe: {httpGet: {path: /health, port: 5000}, initialDelaySeconds: 5, periodSeconds: 10}
+        livenessProbe: {httpGet: {path: /health, port: 5000}, initialDelaySeconds: 15, periodSeconds: 20}
+        resources:
+          requests: {cpu: 100m, memory: 128Mi}
+          limits: {cpu: 500m, memory: 512Mi}

@@ -1,0 +1,18 @@
+# Screenshot checklist for the capstone demonstration
+- [ ] TaskFlow landing page and responsive dashboard
+- [ ] Registration and login
+- [ ] Task create, edit, status update and delete
+- [ ] API response and validation error
+- [ ] `pytest -q` result
+- [ ] GitHub branches, commits and webhook
+- [ ] Jenkins successful pipeline stages
+- [ ] SonarQube analysis and Trivy scan
+- [ ] Docker image and running Compose containers
+- [ ] Kubernetes deployments, pods, service, ConfigMap, Secret metadata and PVC
+- [ ] Scale replicas, rolling update and rollback
+- [ ] Blue-green service selector switch
+- [ ] Ansible playbook recap
+- [ ] Terraform plan and apply outputs
+- [ ] Prometheus target and Grafana dashboard
+- [ ] Container/application logs
+- [ ] ArgoCD application synced/healthy

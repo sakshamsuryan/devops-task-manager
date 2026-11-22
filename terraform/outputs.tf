@@ -1,0 +1,1 @@
+output "provisioned_image" { value = module.taskflow_image.image_reference }

@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block title %}Create account{% endblock %}{% block content %}
+<div class="auth-wrap"><div class="auth-card"><div class="text-center mb-4"><span class="brand-mark large">T</span><h2 class="fw-bold mt-3">Create your account</h2><p class="text-muted">A clearer way to get things done.</p></div>
+<form method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<label class="form-label">Full name</label><input class="form-control mb-3" name="name" required minlength="2" maxlength="100" autocomplete="name">
+<label class="form-label">Email address</label><input class="form-control mb-3" type="email" name="email" required maxlength="255" autocomplete="email">
+<label class="form-label">Password</label><input class="form-control mb-4" type="password" name="password" required minlength="8" autocomplete="new-password">
+<button class="btn btn-primary w-100">Create account</button></form><p class="text-center mt-4 mb-0 text-muted">Already registered? <a href="{{ url_for('auth.login') }}">Sign in</a></p></div></div>{% endblock %}

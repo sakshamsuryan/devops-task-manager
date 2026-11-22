@@ -1,0 +1,9 @@
+- name: Configure host baseline
+  hosts: all
+  become: true
+  tasks:
+    - name: Install baseline utilities
+      ansible.builtin.apt:
+        name: [curl, git, ca-certificates, unzip]
+        state: present
+        update_cache: true

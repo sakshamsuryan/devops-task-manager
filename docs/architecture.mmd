@@ -1,0 +1,13 @@
+flowchart TD
+  Dev[Developer] --> Git[GitHub repository]
+  Git --> CI[Jenkins pipeline]
+  CI --> Test[Pytest + SonarQube + Trivy]
+  Test --> Image[Docker image]
+  Image --> Registry[Container registry]
+  Registry --> CD[ArgoCD GitOps]
+  CD --> K8s[Kubernetes cluster]
+  K8s --> App[TaskFlow Flask application]
+  App --> DB[(PostgreSQL PVC)]
+  K8s --> Prom[Prometheus]
+  Prom --> Graf[Grafana]
+  K8s --> Logs[Container log collector]

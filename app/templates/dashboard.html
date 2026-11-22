@@ -1,0 +1,18 @@
+{% extends "base.html" %}{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4"><div><span class="eyebrow">OVERVIEW</span><h1 class="fw-bold mt-1">Good to see you, {{ current_user.name.split(' ')[0] }}.</h1><p class="text-muted mb-0">Here's what's happening in your workspace.</p></div><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#taskModal" onclick="prepareCreate()">＋ New task</button></div>
+<div class="row g-3 mb-4">
+<div class="col-md-4"><div class="stat-card"><span class="stat-label">Total tasks</span><div class="stat-value">{{ total }}</div><span class="text-muted small">Across your workspace</span></div></div>
+<div class="col-md-4"><div class="stat-card"><span class="stat-label">In progress</span><div class="stat-value text-primary">{{ counts.in_progress }}</div><span class="text-muted small">Currently underway</span></div></div>
+<div class="col-md-4"><div class="stat-card"><span class="stat-label">Completed</span><div class="stat-value text-success">{{ counts.done }}</div><span class="text-muted small">Nicely done</span></div></div>
+</div>
+<section class="panel" id="tasks"><div class="d-flex justify-content-between align-items-center mb-3"><div><h4 class="fw-bold mb-1">Your tasks</h4><p class="text-muted small mb-0">Create, update and track your work.</p></div><input id="taskSearch" class="form-control search-input" placeholder="Search tasks…" aria-label="Search tasks"></div>
+<div id="taskList" class="table-responsive"><div class="text-center py-4 text-muted">Loading tasks…</div></div></section>
+<div class="modal fade" id="taskModal" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><form id="taskForm"><div class="modal-header"><h5 class="modal-title" id="modalTitle">Create task</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+<div class="modal-body"><input type="hidden" id="taskId"><label class="form-label">Task title</label><input class="form-control mb-3" id="title" maxlength="160" required>
+<label class="form-label">Description</label><textarea class="form-control mb-3" id="description" rows="3" maxlength="5000"></textarea>
+<div class="row"><div class="col-6"><label class="form-label">Status</label><select class="form-select mb-3" id="status"><option value="todo">To do</option><option value="in_progress">In progress</option><option value="done">Done</option></select></div><div class="col-6"><label class="form-label">Priority</label><select class="form-select mb-3" id="priority"><option>low</option><option selected>medium</option><option>high</option></select></div></div>
+<label class="form-label">Due date</label><input class="form-control" type="date" id="due_date"><div class="small text-danger mt-2" id="formError"></div></div>
+<div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button><button class="btn btn-primary" id="saveTask">Save task</button></div></form></div></div></div>
+{% endblock %}
+{% block scripts %}<script>document.addEventListener('DOMContentLoaded', () => TaskFlow.init());</script>{% endblock %}
